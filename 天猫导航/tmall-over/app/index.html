@@ -262,7 +262,8 @@
         base: "../modules/",
         alias: {
           "jquery": "jquery/jquery/1.10.1/jquery.js",              //jquery必须要是这样的路径,原因不明
-          "ie7Patch":"../../../statics/common/src/ie7Patch.js",
+          "ie7Patch":"tmall/common/1.0.0/ie7Patch.js",
+          //"ie7Patch":"../../../statics/common/src/ie7Patch.js",
           "css3-supports":"jquery-plugin/jquery.css3_supports.js",
           "menu-aim": "jquery-plugin/jquery.menu-aim.js",
           "slider-tpl": "jquery-plugin/jquery.slider-tpl.js",
@@ -270,7 +271,8 @@
         }
       });
 
-      seajs.use("../statics/cat-nav/src/main")
+      seajs.use("../modules/tmall/cat-nav/1.0.0/main");
+      //seajs.use("../statics/cat-nav/src/main")
 
     </script>
   </body>
