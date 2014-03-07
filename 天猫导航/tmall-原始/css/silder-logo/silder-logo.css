@@ -1,0 +1,9 @@
+.cat-brand-content {
+    width: 130px; overflow: hidden; height: 0;
+}
+.cat-brand-content div {
+    position: absolute; overflow: hidden; width: 650px; -webkit-transition: 0.8s; transition: 0.8s; -webkit-transform: translate3d(0, 0, 0); -webkit-backface-visibility: hidden; left: 0;
+}
+.cat-brand-content div li {
+    float: left; overflow: hidden; width: 130px; display: block;
+}

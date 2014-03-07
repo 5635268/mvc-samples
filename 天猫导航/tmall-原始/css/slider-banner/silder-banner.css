@@ -1,0 +1,15 @@
+.market-slide-content {
+    width: 459px; overflow: hidden; height: 486px; position:relative
+}
+.cat-banner a.j_BannerTrigger {
+    cursor:pointer; display: inline
+}
+.market-slide-content div {
+    position: absolute; overflow: hidden; width: 2295px; -webkit-transition: 0.8s; transition: 0.8s; -webkit-transform: translate3d(0, 0, 0); -webkit-backface-visibility: hidden; left: 0
+}
+.market-slide-content .market-slide-pannel {
+    float: left; overflow: hidden; width: 459px; display: block
+}
+.market-slide-content .market-slide-pannel image {
+    width:459px; height:482px
+}
