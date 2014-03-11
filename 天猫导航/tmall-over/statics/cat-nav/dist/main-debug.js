@@ -1,15 +1,41 @@
-define("tmall/cat-nav/1.0.0/main-debug", [ "ie7Patch-debug", "./cat-nav-menu-debug", "jquery-debug", "menu-aim-debug", "css3-supports-debug", "template-debug", "./cat-nav-slide-debug", "slider-tpl-debug" ], function(require) {
+define("tmall/cat-nav/1.0.0/main-debug", [ "ie7Patch-debug", "./cat-nav-menu-left-debug", "jquery-debug", "template-debug", "./cat-nav-menu-debug", "menu-aim-debug", "css3-supports-debug", "./cat-nav-slide-debug", "slider-tpl-debug", "./cat-nav-first-debug" ], function(require) {
     require("ie7Patch-debug")();
-    var CatNavMenuAim = require("./cat-nav-menu-debug");
-    var catNavMenuAim = new CatNavMenuAim(".left-menu", ".cat-slide-content");
-    catNavMenuAim.render();
-    var CatNavSlide = require("./cat-nav-slide-debug");
-    var catNavSlide = new CatNavSlide("#J_MarketBannerSlide", {
-        btnUlClass: "market-slide-nav",
-        btnCurClass: "market-nav-selected",
-        ifArr: true
-    });
-    catNavSlide.render();
+    var CatNavMenuLeft = require("./cat-nav-menu-left-debug");
+    var catNavMenuLeft = new CatNavMenuLeft("#J_CatSlide");
+    catNavMenuLeft.render();
+    var CatNavFirst = require("./cat-nav-first-debug");
+    var catNavFirst = new CatNavFirst("#cat-nav-1");
+    catNavFirst.render();
+});
+
+define("tmall/cat-nav/1.0.0/cat-nav-menu-left-debug", [ "jquery-debug", "template-debug", "tmall/cat-nav/1.0.0/cat-nav-menu-debug", "menu-aim-debug", "css3-supports-debug", "tmall/cat-nav/1.0.0/cat-nav-slide-debug", "slider-tpl-debug" ], function(require, exports, module) {
+    var $ = require("jquery-debug");
+    var template = require("template-debug");
+    module.exports = catNavMenuLeft;
+    function catNavMenuLeft(container) {
+        this.container = $(container);
+    }
+    catNavMenuLeft.prototype.render = function() {
+        this.init();
+    };
+    catNavMenuLeft.prototype.init = function() {
+        var that = this.container;
+        $.ajax({
+            type: "GET",
+            url: "../cache/cat-nav/data_nav_left.json",
+            dataType: "json",
+            success: function(data) {
+                var module = template("tmpl-left-menu", data);
+                that.prepend($(module));
+                var CatNavMenuAim = require("tmall/cat-nav/1.0.0/cat-nav-menu-debug");
+                var catNavMenuAim = new CatNavMenuAim(".left-menu", ".cat-slide-content");
+                catNavMenuAim.render();
+            },
+            error: function(err) {
+                console.log(err);
+            }
+        });
+    };
 });
 
 define("tmall/cat-nav/1.0.0/cat-nav-menu-debug", [ "jquery-debug", "menu-aim-debug", "css3-supports-debug", "template-debug", "tmall/cat-nav/1.0.0/cat-nav-slide-debug", "slider-tpl-debug" ], function(require, exports, module) {
@@ -97,5 +123,40 @@ define("tmall/cat-nav/1.0.0/cat-nav-slide-debug", [ "jquery-debug", "slider-tpl-
     };
     CatNavSlider.prototype.init = function() {
         this.silder.sliderTpl(this.data);
+    };
+});
+
+define("tmall/cat-nav/1.0.0/cat-nav-first-debug", [ "jquery-debug", "template-debug", "css3-supports-debug", "tmall/cat-nav/1.0.0/cat-nav-slide-debug", "slider-tpl-debug" ], function(require, exports, module) {
+    var $ = require("jquery-debug");
+    var template = require("template-debug");
+    require("css3-supports-debug")($);
+    module.exports = catNavFirst;
+    function catNavFirst(container) {
+        this.container = $(container);
+    }
+    catNavFirst.prototype.render = function() {
+        this.init();
+    };
+    catNavFirst.prototype.init = function() {
+        var that = this.container;
+        $.ajax({
+            type: "GET",
+            url: "../cache/cat-nav/data_nav_1.json",
+            dataType: "json",
+            success: function(data) {
+                var module = template("tmpl-cat-nav-first", data);
+                that.append($(module));
+                var CatNavSlide = require("tmall/cat-nav/1.0.0/cat-nav-slide-debug");
+                var catNavSlide = new CatNavSlide("#J_MarketBannerSlide", {
+                    btnUlClass: "market-slide-nav",
+                    btnCurClass: "market-nav-selected",
+                    ifArr: true
+                });
+                catNavSlide.render();
+            },
+            error: function(err) {
+                console.log(err);
+            }
+        });
     };
 });

@@ -42,7 +42,6 @@ define(function(require, exports, module) {
             var thisIndex = Number(menuId.split('-')[2]);
             var content = this.menuContent.find('#'+menuId).find('.j_LazyloadCatPanel');
             content.html(template('tmpl-loading'));
-
             var that = $(currentTarget);
             $.ajax({
                 type:'GET',

@@ -1,12 +1,12 @@
 define(function(require) {
     require('ie7Patch')();
 
-    var CatNavMenuAim = require('./cat-nav-menu');
-    var catNavMenuAim = new CatNavMenuAim('.left-menu','.cat-slide-content');
-    catNavMenuAim.render();
+    var CatNavMenuLeft = require('./cat-nav-menu-left');
+    var catNavMenuLeft = new CatNavMenuLeft('#J_CatSlide');
+    catNavMenuLeft.render();
 
-    var CatNavSlide = require('./cat-nav-slide');
-    var catNavSlide = new CatNavSlide('#J_MarketBannerSlide',{btnUlClass:'market-slide-nav',btnCurClass:'market-nav-selected',ifArr:true});
-    catNavSlide.render();
+    var CatNavFirst = require('./cat-nav-first');
+    var catNavFirst = new CatNavFirst('#cat-nav-1');
+    catNavFirst.render();
 });
 
